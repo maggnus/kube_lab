@@ -1,0 +1,8 @@
+- name: Get node join command from master host
+  shell: kubeadm token create --print-join-command
+  register: r_join
+  delegate_to: "{{ kube_master_host }}"
+
+- name: Join node to the Kubernetes cluster
+  command: "{{ r_join.stdout }}"
+  when: r_join is defined

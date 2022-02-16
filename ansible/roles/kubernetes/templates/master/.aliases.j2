@@ -1,0 +1,12 @@
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
+
+alias kget='kubectl get -A'
+alias kall='clear && kubectl get -A deploy,pods,svc,ep'
+alias kw='watch -n0.5 kubectl get -A'
+

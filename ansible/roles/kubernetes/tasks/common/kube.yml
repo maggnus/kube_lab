@@ -1,0 +1,17 @@
+- name: Install required packages
+  apt:
+    pkg:
+      - kubeadm={{ kube_version }}
+      - kubectl={{ kube_version }}
+      - kubelet={{ kube_version }}
+    force: yes
+
+- name: Hold kubeadm
+  dpkg_selections:
+    name: kubeadm
+    selection: hold
+
+- name: Start and enable kubelet service
+  service:
+    name: kubelet
+    enabled: yes

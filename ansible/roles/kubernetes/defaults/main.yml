@@ -1,0 +1,13 @@
+kube_version: 1.22.0-00
+
+kube_master_host: "{{ groups['master'][0] }}"
+kube_master_ip: "{{ hostvars[kube_master_host].instance_ip }}"
+
+kube_apiserver_ip: "{{ kube_master_ip }}"
+kube_apiserver_dns: "{{ kube_master_host }}"
+kube_apiserver_port: 6443
+kube_kubelet_port: 10250
+
+docker_config:
+  exec-opts:
+    - native.cgroupdriver=systemd

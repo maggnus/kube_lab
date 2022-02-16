@@ -1,0 +1,32 @@
+- name: Check if kube-apiserver service is running
+  command: pidof kube-apiserver
+  register: kube_apiserver_check_cmd
+  changed_when: false
+  failed_when: false
+  no_log: true
+
+- name: Set kube_apiserver_up variable
+  set_fact:
+    kube_apiserver_up: "{{ kube_apiserver_check_cmd.rc == 0 }}"
+  changed_when: false
+
+- name: Check if kubelet service is running
+  command: pidof kubelet
+  register: kubelet_check_cmd
+  changed_when: false
+  failed_when: false
+  no_log: true
+
+- name: Set kubelet_up variable
+  set_fact:
+    kubelet_up: "{{ kubelet_check_cmd.rc == 0 }}"
+  changed_when: false
+
+- name: Check if admin file exists
+  stat: path=/etc/kubernetes/admin.conf
+  register: admin_file
+
+- name: Set master_up variable
+  set_fact:
+    master_up: "{{ admin_file.stat.exists }}"
+  changed_when: false

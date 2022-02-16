@@ -1,0 +1,14 @@
+- name: Set up Docker
+  import_tasks: docker/main.yml
+  when: inventory_hostname in groups['master'] or inventory_hostname in groups['node']
+  tags: kube-docker
+
+- name: Deploy master nodes
+  import_tasks: master/main.yml
+  when: inventory_hostname in groups['master']
+  tags: kube-master
+
+- name: Deploy worker nodes
+  import_tasks: node/main.yml
+  when: inventory_hostname in groups['node']
+  tags: kube-node

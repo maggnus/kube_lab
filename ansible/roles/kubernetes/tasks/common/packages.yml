@@ -1,0 +1,14 @@
+- name: Install required packages
+  apt:
+    pkg:
+      - net-tools
+      - bridge-utils
+      - ebtables
+      - ethtool
+      - lsof
+      - wget
+      - mc
+      - bash-completion
+      - ipvsadm
+      - jq
+    update_cache: true
