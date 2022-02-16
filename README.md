@@ -26,7 +26,7 @@ Tools required to apply this deployemnt:
 3. Login to master nodes and check the cluster
     ```sh
     vagrant ssh kube-master01
-    kubectl get nodes,pods,svc -A
+    sudo kubectl get nodes,pods,svc -A
     ```
 
 ## VM Settings
