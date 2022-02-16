@@ -1,5 +1,10 @@
 # Kubernetes Lab
-Single run Kubernetes deployment with Vagrant.
+Single run Kubernetes deployment with Vagrant. I use this script to setup test Kubernetes cluster for my CKA exam prepartion:
+- upgrade cluster version with `kubeadm` (default version is `1.22.0-00`
+- backup `etcd`
+- join cluster nodes (`kubeadm token create --print-join-command`)
+- create Kubernetes resources
+- etc.
 
 ## Prerequisites
 Tools required to apply this deployemnt:
